@@ -10,6 +10,7 @@ import aiohttp
 from starlette.routing import Mount
 from starlette.middleware.cors import CORSMiddleware
 import uvicorn
+import os
 
 learner = load_learner('./')
 
@@ -231,5 +232,6 @@ async def upload(request):
     bytes = await (data["file"].read())
     return predict_image_from_bytes(bytes)    
 
+port = int(os.environ.get("PORT", 8080))
 
-uvicorn.run(app, host="0.0.0.0", port=8080, log_level="info")
+uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
