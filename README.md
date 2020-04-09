@@ -11,9 +11,13 @@ A snapshot of what can be done with the app:
 
 The application takes user input which is handwritten on the canvas and compares it against its training data to make 3 best guesses about the character. 
 
+> This is my first attempt at a vision classifier. I am a deep learning novice trying to learn by doing. So, the app here might not be super accurate and will have multiple edge cases where it miserably fails. Hoping to come back to his as I gain more expertise in future
+
 ### Learning Model
 
-<pending>
+The learning model is built on top of [fast.ai](https://www.fast.ai) and [PyTorch](https://pytorch.org) and uses [ResNet-34](https://www.kaggle.com/pytorch/resnet34) architecture to train the model.
+
+<<publishing notebook - pending>>
 
 ### Server
 
