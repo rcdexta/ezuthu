@@ -8,7 +8,6 @@ from fastai.vision import (
 from io import BytesIO
 import aiohttp  
 from starlette.routing import Mount
-from starlette.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 
 learner = load_learner('./')
@@ -211,7 +210,7 @@ async def homepage(request):
 
 
 app = Starlette(debug=True, routes=[
-    Mount('/site', app=StaticFiles(directory='site'), name="site"),
+  Route('/', homepage),
 ])
 
 
