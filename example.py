@@ -9,6 +9,7 @@ from io import BytesIO
 import aiohttp  
 from starlette.routing import Mount
 from starlette.middleware.cors import CORSMiddleware
+import uvicorn
 
 learner = load_learner('./')
 
@@ -229,3 +230,6 @@ async def upload(request):
     data = await request.form()
     bytes = await (data["file"].read())
     return predict_image_from_bytes(bytes)    
+
+
+uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
