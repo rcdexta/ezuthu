@@ -10,6 +10,7 @@ import aiohttp
 from starlette.routing import Mount
 from starlette.middleware.cors import CORSMiddleware
 from starlette.staticfiles import StaticFiles
+from moesifwsgi import MoesifMiddleware
 import uvicorn
 import os
 
@@ -224,6 +225,9 @@ app = Starlette(debug=True, routes=[
   Mount('/', app=StaticFiles(directory='build'), name="build    ")
 ])
 
+moesif_settings = {
+    'APPLICATION_ID': 'eyJhcHAiOiI0ODc6OTciLCJ2ZXIiOiIyLjAiLCJvcmciOiI1NzM6MTE3IiwiaWF0IjoxNTg2MzkwNDAwfQ.nq1m0pqF3-jCiEr8g2Hxe6tOvgc4JKBMyDKnxBBvkIY',
+}
 
 app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_headers=["*"], allow_methods=["*"]
