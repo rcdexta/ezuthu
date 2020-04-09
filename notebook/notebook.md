@@ -499,4 +499,4 @@ copyfile(learn.path/'export.pkl', 'data/e.pkl')
 
 
 
-That's a pretty accurate model!
+
