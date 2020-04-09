@@ -15,7 +15,7 @@ The application takes user input which is handwritten on the canvas and compares
 
 ### Learning Model
 
-The learning model is built on top of [fast.ai](https://www.fast.ai) and [PyTorch](https://pytorch.org) and uses [ResNet-34](https://www.kaggle.com/pytorch/resnet34) architecture to train the model.
+The learning model is built on top of [fast.ai](https://www.fast.ai) and [PyTorch](https://pytorch.org) and uses [ResNet-34](https://www.kaggle.com/pytorch/resnet34) Convolutional Neural Network architecture to train the model.
 
 Refer to the [notebook](https://github.com/rcdexta/ezuthu/blob/master/notebook/notebook.md) for more details about the model and training methodology.
 
