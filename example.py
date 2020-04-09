@@ -1,5 +1,5 @@
 from starlette.applications import Starlette
-from starlette.responses import JSONResponse, HTMLResponse
+from starlette.responses import JSONResponse, HTMLResponse, RedirectResponse
 from starlette.routing import Route
 from fastai.vision import (
     open_image,
@@ -9,6 +9,7 @@ from io import BytesIO
 import aiohttp  
 from starlette.routing import Mount
 from starlette.middleware.cors import CORSMiddleware
+from starlette.staticfiles import StaticFiles
 import uvicorn
 import os
 
@@ -211,8 +212,16 @@ async def homepage(request):
     """)    
 
 
-app = Starlette(debug=True, routes=[
-  Route('/', homepage),
+async def upload(request):
+    data = await request.form()
+    bytes = await (data["file"].read())
+    return predict_image_from_bytes(bytes)    
+
+
+app = Starlette(debug=True, routes=[  
+  Route('/upload', upload, methods=['POST']),
+  Route('/', RedirectResponse(url='/index.html')),
+  Mount('/', app=StaticFiles(directory='build'), name="build    ")
 ])
 
 
@@ -225,12 +234,6 @@ async def classify_url(request):
     bytes = await get_bytes(request.query_params["url"])
     return predict_image_from_bytes(bytes)
 
-
-@app.route("/upload", methods=["POST"])
-async def upload(request):
-    data = await request.form()
-    bytes = await (data["file"].read())
-    return predict_image_from_bytes(bytes)    
 
 port = int(os.environ.get("PORT", 8080))
 

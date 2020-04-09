@@ -11,6 +11,7 @@ WORKDIR $APP
 COPY example.py $APP/
 COPY export.pkl $APP/
 COPY requirements.txt $APP/
+COPY build $APP/build/
 
 RUN pip install -r requirements.txt
 
